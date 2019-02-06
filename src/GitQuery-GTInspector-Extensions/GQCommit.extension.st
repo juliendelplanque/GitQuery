@@ -1,7 +1,24 @@
 Extension { #name : #GQCommit }
 
 { #category : #'*GitQuery-GTInspector-Extensions' }
-GQCommit >> gtInspectorIntegerIn: composite [
+GQCommit >> gtInspectorModificationsIn: composite [
+	<gtInspectorPresentationOrder: 1>
+	^ composite fastTable
+		title: 'Modifications';
+		display: [ self modifications ];
+		beMultiple;
+		wantsAutomaticRefresh: true;
+		column: 'File' evaluated: [ :value :idex | value printString ] width: 500 ;
+		send: [ :result | 
+			result isNil
+				ifTrue: [ nil ]
+				ifFalse: [ result size = 1 
+					ifTrue: [result anyOne ]  
+					ifFalse: [self species withAll: result]]]
+]
+
+{ #category : #'*GitQuery-GTInspector-Extensions' }
+GQCommit >> gtInspectorPropertiesIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	^ composite table
 		title: 'Properties';

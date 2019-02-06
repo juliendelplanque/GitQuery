@@ -68,7 +68,15 @@ GQCommit >> message [
 { #category : #accessing }
 GQCommit >> modifications [
 	"Returns a list of modification modeling files modified by the commit."
-	^ self shouldBeImplemented
+	| modifications |
+	modifications := OrderedCollection new.
+	lGitCommit parents do: [ :parent |
+		(lGitCommit tree diffTo: parent tree) files
+			ifNotEmpty: [ :files |
+				modifications addAll: (files collect: [ :file | 
+					GQModification filePath: file commitDiffWasMadeWith: parent asGQCommit ]) ] ].
+		
+	^ modifications
 ]
 
 { #category : #accessing }
