@@ -27,6 +27,11 @@ GQLatestToFirstRepositoryIterator >> enqueue: aLGitCommit [
 	commitsQueue addFirst: aLGitCommit.
 ]
 
+{ #category : #private }
+GQLatestToFirstRepositoryIterator >> finishIteration [
+	self flag: #TODO
+]
+
 { #category : #initialization }
 GQLatestToFirstRepositoryIterator >> initialize [
 	super initialize.
