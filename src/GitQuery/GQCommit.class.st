@@ -91,3 +91,13 @@ GQCommit >> sha [
 	"Returns the SHA of the commit."
 	^ lGitCommit id hexString
 ]
+
+{ #category : #accessing }
+GQCommit >> tags [
+	| allTags tagsToCommits |
+	allTags := lGitCommit repository tags.
+	tagsToCommits := allTags collect: [ :tagString | tagString -> (lGitCommit repository revparse: tagString) ].
+	^ tagsToCommits
+		select: [ :assoc | assoc value id = lGitCommit id ]
+		thenCollect: #key
+]

@@ -35,3 +35,20 @@ GQCommit >> gtInspectorPropertiesIn: composite [
 		column: 'Value' evaluated: [ :each | each value printString ];
 		send: #value
 ]
+
+{ #category : #'*GitQuery-GTInspector-Extensions' }
+GQCommit >> gtInspectorTagsIn: composite [
+	<gtInspectorPresentationOrder: 2>
+	^ composite fastTable
+		title: 'Tags';
+		display: [ self tags ];
+		beMultiple;
+		wantsAutomaticRefresh: true;
+		column: 'Tag name' evaluated: [ :value :idex | value printString ] width: 500 ;
+		send: [ :result | 
+			result isNil
+				ifTrue: [ nil ]
+				ifFalse: [ result size = 1 
+					ifTrue: [result anyOne ]  
+					ifFalse: [self species withAll: result]]]
+]

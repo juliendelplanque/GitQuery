@@ -16,10 +16,15 @@ GitQuery class >> latestFirst [
 ]
 
 { #category : #configuration }
-GitQuery >> authorNamed: aString [
-	"Only select commits authored by an author named aString.
+GitQuery >> authorHasOneOfTheseNames: aCollectionOfString [
+	"Only select commits authored by an author having one of the names in aCollectionOfString.
 	 Makes no sense to be called multiple times."
-	filter := filter and: [ :commit | commit author name = aString ]
+	filter := filter and: [ :commit | aCollectionOfString includes: commit author name ]
+]
+
+{ #category : #configuration }
+GitQuery >> authorNamed: aString [
+	self authorHasOneOfTheseNames: { aString }
 ]
 
 { #category : #configuration }
@@ -29,10 +34,15 @@ GitQuery >> commitsSatisfying: aBlock [
 ]
 
 { #category : #configuration }
-GitQuery >> committerNamed: aString [
-	"Only select commits committed by a committer named aString.
+GitQuery >> committerHasOneOfTheseNames: aCollectionOfString [
+	"Only select commits committed by a committer having one of the names in aCollectionOfString.
 	 Makes no sense to be called multiple times."
-	filter := filter and: [ :commit | commit committer name = aString ]
+	filter := filter and: [ :commit | aCollectionOfString includes: commit committer name ]
+]
+
+{ #category : #configuration }
+GitQuery >> committerNamed: aString [
+	self committerHasOneOfTheseNames: { aString }
 ]
 
 { #category : #initialization }
@@ -49,6 +59,19 @@ GitQuery >> iteratorClass [
 { #category : #accessing }
 GitQuery >> iteratorClass: anObject [
 	iteratorClass := anObject
+]
+
+{ #category : #configuration }
+GitQuery >> modificationsConcernFilePath: aString [
+	self modificationsConcernOneOfTheseFilePaths: { aString }
+]
+
+{ #category : #configuration }
+GitQuery >> modificationsConcernOneOfTheseFilePaths: aCollectionOfString [
+	"Only select commits having a modification concerning one of the file paths in aCollectionOfString.
+	 Makes no sense to be called multiple times."
+	filter := filter and: [ :commit | 
+		(aCollectionOfString intersection: (commit modifications collect: #filePath)) isNotEmpty ]
 ]
 
 { #category : #running }
