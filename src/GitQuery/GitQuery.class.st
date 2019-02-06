@@ -98,3 +98,14 @@ GitQuery >> select: aBlock [
 	"Select condition for commits."
 	filter := aBlock asGQFilter
 ]
+
+{ #category : #configuration }
+GitQuery >> withOneOfTheseTags: aCollectionOfString [
+	"Only select commits having one of the tags in aCollectionOfString."
+	filter := filter and: [ :commit | commit tags includesAnyOf: aCollectionOfString ]
+]
+
+{ #category : #configuration }
+GitQuery >> withTag: aString [
+	self withOneOfTheseTags: { aString }
+]

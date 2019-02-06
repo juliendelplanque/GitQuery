@@ -28,8 +28,14 @@ GQCommit >> authoredDateAndTime [
 
 { #category : #accessing }
 GQCommit >> branches [
-	"TODO"
-	^ self shouldBeImplemented
+	"Returns the branches to which this commit belongs to.
+	 Belonging to a branch is defined as having one of its parents allowing to reach the branch."
+	| branches |
+	branches := OrderedCollection new.
+	lGitCommit repository allBranchesDo: [ :branch |
+		(branch resolve object isDescendantOf: lGitCommit)
+			ifTrue: [ branches add: branch name ] ].
+	^ branches
 ]
 
 { #category : #accessing }
