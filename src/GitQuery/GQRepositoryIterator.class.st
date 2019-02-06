@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'lGitRepository'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Core'
 }
 
 { #category : #accessing }

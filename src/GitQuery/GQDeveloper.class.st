@@ -5,7 +5,7 @@ Class {
 		'name',
 		'email'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Core'
 }
 
 { #category : #'instance creation' }

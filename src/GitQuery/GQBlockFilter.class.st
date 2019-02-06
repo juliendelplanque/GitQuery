@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'block'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Filters'
 }
 
 { #category : #accessing }

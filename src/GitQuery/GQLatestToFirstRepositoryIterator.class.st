@@ -5,7 +5,7 @@ Class {
 		'commitsQueue',
 		'shasVisited'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Core'
 }
 
 { #category : #accessing }

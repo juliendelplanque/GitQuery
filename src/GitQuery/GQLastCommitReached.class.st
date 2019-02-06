@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'iterator'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Errors'
 }
 
 { #category : #signalling }

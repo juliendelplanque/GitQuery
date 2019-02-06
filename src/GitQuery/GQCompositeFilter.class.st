@@ -5,7 +5,7 @@ Class {
 		'leftFilter',
 		'rightFilter'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Filters'
 }
 
 { #category : #accessing }

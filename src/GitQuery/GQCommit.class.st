@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'lGitCommit'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Core'
 }
 
 { #category : #'instance creation' }

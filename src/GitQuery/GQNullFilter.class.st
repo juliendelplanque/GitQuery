@@ -1,7 +1,7 @@
 Class {
 	#name : #GQNullFilter,
 	#superclass : #GQFilter,
-	#category : #GitQuery
+	#category : #'GitQuery-Filters'
 }
 
 { #category : #combining }

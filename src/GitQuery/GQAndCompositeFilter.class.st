@@ -1,7 +1,7 @@
 Class {
 	#name : #GQAndCompositeFilter,
 	#superclass : #GQCompositeFilter,
-	#category : #GitQuery
+	#category : #'GitQuery-Filters'
 }
 
 { #category : #selecting }

@@ -5,7 +5,7 @@ Class {
 		'iteratorClass',
 		'filter'
 	],
-	#category : #GitQuery
+	#category : #'GitQuery-Core'
 }
 
 { #category : #'instance creation' }
